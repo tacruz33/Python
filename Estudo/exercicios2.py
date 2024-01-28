@@ -12,4 +12,6 @@ peso = 95
 
 imc = (peso / (altura**2))
 
+
+
 print ('Nome',nome, 'com altura de', altura, ' e IMC :', imc )
