@@ -21,4 +21,4 @@ print ('"Já sei!"')
 nome ="Luiz"
 idade = 23
 formato = 10 *20
-print(formato)
+print(formato)   
