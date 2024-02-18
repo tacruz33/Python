@@ -1,6 +1,5 @@
 
 # Ordem de Precedência
-
 '''1 (n+n)
 2 **
 3 * / // %
