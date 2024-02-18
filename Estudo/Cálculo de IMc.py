@@ -7,3 +7,5 @@ imc = peso / (altura ** 2)
 print ('Seu nome : ', nome, )
 print ('Altura =', altura,)  
 print ('IMC = ',round( imc, 2))  #função round para arredondar o resultado')
+
+print (...) # não gera erro os trẽs pontinhos
