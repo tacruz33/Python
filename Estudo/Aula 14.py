@@ -1,4 +1,4 @@
-# If/elif .. else
+# If/ elif .. else
 
 entrada =  input( ' Você quer "entrar" ou "sair"')
 
