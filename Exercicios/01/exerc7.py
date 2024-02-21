@@ -13,4 +13,3 @@ if intervalo <=10 :
     print (" O numéro digitado e válido : ", intervalo)
 elif intervalo >10 :
     print(" Valor digitado é inválido. Por favor digite um valor entre 0 e 10  ")
-else
