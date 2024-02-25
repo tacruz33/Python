@@ -16,51 +16,43 @@ driver.get(url)
 
 driver.quit()'''
 
-import time
-import requests
-import pandas as pd
-from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-import json
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+from time import sleep
 
-def obter_anos_disponiveis():
-    try:
-        url = "https://portal.inmet.gov.br/dadoshistoricos"
-        option = Options()
-        option.headless = True
-        driver = webdriver.Firefox(options=option)
-        driver.get(url)
+url = 'https://www.google.com'
 
-        # Aguarda um curto período de tempo para garantir que a página seja totalmente carregada
-        time.sleep(3)
+# Abre o navegador
+navegador = webdriver.Chrome()
+#navegador = webdriver.Chrome(executable_path='path_to_chromedriver')
 
-        # Encontra o elemento de seleção de anos
-        select_element = driver.find_element_by_id("selYear")
+navegador.get(url)
+sleep(1)
 
-        # Obtém todas as opções de anos disponíveis
-        anos_disponiveis = [option.get_attribute("value") for option in select_element.find_elements_by_tag_name("option")]
+# Procura o campo de busca
+search = navegador.find_element(By.TAG_NAME, "textarea")
+if search:
+    search.send_keys('cepedi ilhéus')
+    sleep(2)
+    search.send_keys(Keys.RETURN)
+    sleep(1)
+else:
+    print('Campo de busca não encontrado')
 
-        driver.quit()
+search = BeautifulSoup(navegador.page_source, 'html.parser')
+#print(search.prettify())
 
-        return anos_disponiveis
-    except Exception as e:
-        print("Erro:", e)
-        return None
+search = search.find('div', attrs={'class':'g'})
+if search:
+    print(search.prettify())
+else: 
+    print('Nada encontrado')
 
-# Função para exibir os anos disponíveis
-def exibir_anos_disponiveis():
-    anos = obter_anos_disponiveis()
-    if anos is not None:
-        if anos:
-            print("Anos disponíveis:")
-            for ano in anos:
-                print(ano)
-        else:
-            print("Nenhum ano disponível encontrado.")
-    else:
-        print("Erro ao acessar o site. Verifique sua conexão com a internet.")
 
-# Chama a função para exibir os anos disponíveis
-exibir_anos_disponiveis()
+
+
+
+
 
